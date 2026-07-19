@@ -29,7 +29,26 @@ body{
     position:fixed;
     left:20px;
     top:50%;
-     background:#050816;
+    transform:translateY(-50%);
+    
+    background:linear-gradient(135deg,#00d4ff,#6a5cff);
+    color:white;
+    
+    padding:10px 16px;
+    border-radius:25px;
+    
+    font-size:13px;
+    font-weight:600;
+    text-decoration:none;
+    
+    box-shadow:
+    0 0 15px #00d4ff,
+    0 0 30px #6a5cff;
+
+    transition:.3s;
+    animation:buttonPulse 2s infinite;
+}
+
 
 .leads-btn:hover{
     transform:translateY(-50%) scale(1.1);
@@ -240,7 +259,7 @@ body{
 <!-- LEFT BUTTON -->
 
 <a href="source.html" class="leads-btn">
-    .
+    🚀 Leads
 </a>
 
 
