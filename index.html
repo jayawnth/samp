@@ -1,0 +1,154 @@
+# samp
+it is for few mins
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voice Assistant</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Inter,sans-serif;
+}
+
+body{
+    background:#050816;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+}
+
+.container{
+    text-align:center;
+    color:white;
+}
+
+.orb{
+    width:170px;
+    height:170px;
+    border-radius:50%;
+    margin:auto;
+    position:relative;
+    background:linear-gradient(135deg,#00d4ff,#6a5cff,#ff4ecd);
+    animation:pulse 2.2s infinite ease-in-out;
+    box-shadow:
+    0 0 40px #00d4ff66,
+    0 0 80px #6a5cff55,
+    inset 0 0 25px rgba(255,255,255,.25);
+}
+
+.orb::before{
+    content:"";
+    position:absolute;
+    inset:-15px;
+    border-radius:50%;
+    border:2px solid rgba(255,255,255,.15);
+    animation:ring 2s infinite;
+}
+
+.orb::after{
+    content:"";
+    position:absolute;
+    inset:-35px;
+    border-radius:50%;
+    border:2px solid rgba(255,255,255,.08);
+    animation:ring 2s infinite .6s;
+}
+
+@keyframes pulse{
+    0%,100%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.08);
+    }
+}
+
+@keyframes ring{
+    from{
+        transform:scale(.8);
+        opacity:1;
+    }
+    to{
+        transform:scale(1.4);
+        opacity:0;
+    }
+}
+
+.wave{
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
+    margin-top:60px;
+    gap:8px;
+    height:70px;
+}
+
+.wave span{
+    width:8px;
+    background:linear-gradient(to top,#00d4ff,#6a5cff,#ff4ecd);
+    border-radius:20px;
+    animation:wave 1s infinite ease-in-out;
+}
+
+.wave span:nth-child(1){height:18px;animation-delay:.1s;}
+.wave span:nth-child(2){height:40px;animation-delay:.2s;}
+.wave span:nth-child(3){height:55px;animation-delay:.3s;}
+.wave span:nth-child(4){height:70px;animation-delay:.4s;}
+.wave span:nth-child(5){height:55px;animation-delay:.5s;}
+.wave span:nth-child(6){height:40px;animation-delay:.6s;}
+.wave span:nth-child(7){height:18px;animation-delay:.7s;}
+
+@keyframes wave{
+    0%,100%{
+        transform:scaleY(.4);
+    }
+    50%{
+        transform:scaleY(1.4);
+    }
+}
+
+.status{
+    margin-top:40px;
+    font-size:22px;
+    font-weight:600;
+    color:#ffffff;
+}
+
+.sub{
+    margin-top:12px;
+    color:#8fa2c8;
+    font-size:15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="orb"></div>
+
+    <div class="wave">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="status">Listening...</div>
+    <div class="sub">Speak naturally</div>
+
+</div>
+
+</body>
+</html>
