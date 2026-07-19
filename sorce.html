@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Lead Engine</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Inter,Arial;
+}
+
+body{
+    background:#050816;
+    color:white;
+    overflow-x:hidden;
+}
+
+
+/* Background */
+
+body:before{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:#00d9ff;
+    filter:blur(180px);
+    top:-100px;
+    left:-100px;
+    opacity:.25;
+}
+
+body:after{
+    content:"";
+    position:fixed;
+    width:400px;
+    height:400px;
+    background:#8b5cf6;
+    filter:blur(150px);
+    right:-100px;
+    bottom:-100px;
+    opacity:.3;
+}
+
+
+/* Main */
+
+.container{
+    width:95%;
+    margin:auto;
+    padding:30px;
+}
+
+
+/* Header */
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+
+.logo{
+    font-size:28px;
+    font-weight:800;
+}
+
+
+.live{
+    background:#052e16;
+    padding:12px 20px;
+    border-radius:30px;
+    color:#4ade80;
+    box-shadow:0 0 20px #22c55e;
+}
+
+
+.dot{
+    animation:blink 1s infinite;
+}
+
+
+@keyframes blink{
+    50%{
+        opacity:.2;
+    }
+}
+
+
+
+/* Cards */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+
+.card{
+
+background:
+rgba(255,255,255,.08);
+
+backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,255,255,.1);
+
+border-radius:20px;
+
+padding:25px;
+
+}
+
+
+.number{
+
+font-size:35px;
+
+color:#22d3ee;
+
+margin-top:10px;
+
+}
+
+
+/* Grid */
+
+
+.grid{
+
+margin-top:25px;
+
+display:grid;
+
+grid-template-columns:2fr 1fr;
+
+gap:20px;
+
+}
+
+
+
+/* Panels */
+
+.panel{
+
+background:
+rgba(255,255,255,.06);
+
+border-radius:20px;
+
+padding:25px;
+
+border:1px solid rgba(255,255,255,.1);
+
+}
+
+
+
+.title{
+
+font-size:20px;
+
+margin-bottom:20px;
+
+color:#67e8f9;
+
+}
+
+
+
+/* Leads */
+
+
+.lead{
+
+display:flex;
+
+justify-content:space-between;
+
+padding:15px;
+
+margin-bottom:10px;
+
+background:rgba(255,255,255,.05);
+
+border-radius:12px;
+
+animation:slide .5s;
+
+}
+
+
+
+@keyframes slide{
+
+from{
+
+transform:translateX(100px);
+
+opacity:0;
+
+}
+
+to{
+
+transform:translateX(0);
+
+opacity:1;
+
+}
+
+}
+
+
+
+.badge{
+
+color:#4ade80;
+
+}
+
+
+
+/* Logs */
+
+
+.logs{
+
+height:300px;
+
+overflow:hidden;
+
+font-family:monospace;
+
+color:#a5f3fc;
+
+}
+
+
+.log{
+
+margin-bottom:12px;
+
+animation:fade .5s;
+
+}
+
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+
+}
+
+to{
+
+opacity:1;
+
+}
+
+}
+
+
+/* Progress */
+
+
+.progress{
+
+margin:20px 0;
+
+}
+
+
+.bar{
+
+height:12px;
+
+background:#111827;
+
+border-radius:20px;
+
+overflow:hidden;
+
+}
+
+
+.fill{
+
+height:100%;
+
+background:linear-gradient(
+90deg,
+#06b6d4,
+#8b5cf6
+);
+
+animation:load 3s infinite;
+
+}
+
+
+@keyframes load{
+
+0%{width:20%}
+50%{width:95%}
+100%{width:40%}
+
+}
+
+
+
+@media(max-width:900px){
+
+.cards{
+
+grid-template-columns:1fr 1fr;
+
+}
+
+.grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<div class="header">
+
+<div class="logo">
+ Lead Intelligence Engine
+</div>
+
+
+<div class="live">
+<span class="dot">●</span>
+SERVER RUNNING
+</div>
+
+
+</div>
+
+
+
+<div class="cards">
+
+
+<div class="card">
+Total Leads
+<div class="number" id="leads">
+12486
+</div>
+</div>
+
+
+<div class="card">
+Verified Emails
+<div class="number" id="emails">
+10982
+</div>
+</div>
+
+
+<div class="card">
+Companies
+<div class="number">
+4210
+</div>
+</div>
+
+
+<div class="card">
+AI Score
+<div class="number">
+94%
+</div>
+</div>
+
+
+</div>
+
+
+
+
+<div class="grid">
+
+
+<div class="panel">
+
+
+<div class="title">
+⚡ Live Lead Stream
+</div>
+
+
+<div id="leadBox"></div>
+
+
+</div>
+
+
+
+
+<div class="panel">
+
+
+<div class="title">
+📡 Server Activity
+</div>
+
+
+<div class="logs" id="logs"></div>
+
+
+<div class="progress">
+
+Lead Discovery
+
+<div class="bar">
+<div class="fill"></div>
+</div>
+
+</div>
+
+
+
+<div class="progress">
+
+Email Verification
+
+<div class="bar">
+<div class="fill"></div>
+</div>
+
+</div>
+
+
+<div class="progress">
+
+AI Enrichment
+
+<div class="bar">
+<div class="fill"></div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+
+let names=[
+"Sarah Williams",
+"Daniel Carter",
+"Emma Wilson",
+"Michael Lee",
+"Olivia Brown",
+"James Anderson",
+"Sophia Miller"
+];
+
+
+let companies=[
+"NovaTech",
+"Growth Labs",
+"Future AI",
+"Cloud Systems",
+"Vision Corp"
+];
+
+
+let roles=[
+"CEO",
+"Founder",
+"Marketing Director",
+"CTO",
+"Product Manager"
+];
+
+
+function newLead(){
+
+
+let name=
+names[Math.floor(Math.random()*names.length)];
+
+
+let company=
+companies[Math.floor(Math.random()*companies.length)];
+
+
+let role=
+roles[Math.floor(Math.random()*roles.length)];
+
+
+let box=document.getElementById("leadBox");
+
+
+let div=document.createElement("div");
+
+div.className="lead";
+
+
+div.innerHTML=`
+
+<div>
+<b>${name}</b><br>
+${company}<br>
+${role}
+</div>
+
+<div class="badge">
+Verified ✓
+</div>
+
+`;
+
+
+box.prepend(div);
+
+
+
+if(box.children.length>6)
+
+box.lastChild.remove();
+
+
+document.getElementById("leads").innerHTML=
+Number(document.getElementById("leads").innerHTML)+1;
+
+
+}
+
+
+
+let messages=[
+
+"Connecting data sources...",
+"LinkedIn database synchronized",
+"Finding new prospects...",
+"Email verification running",
+"AI scoring completed",
+"High value lead discovered",
+"Company enrichment finished"
+
+];
+
+
+function log(){
+
+let logs=document.getElementById("logs");
+
+
+let div=document.createElement("div");
+
+div.className="log";
+
+
+let time=new Date()
+.toLocaleTimeString();
+
+
+div.innerHTML=
+"["+time+"] "+
+messages[Math.floor(Math.random()*messages.length)];
+
+
+logs.prepend(div);
+
+
+if(logs.children.length>12)
+
+logs.lastChild.remove();
+
+
+}
+
+
+
+setInterval(newLead,1500);
+
+setInterval(log,1000);
+
+
+</script>
+
+
+</body>
+</html>
